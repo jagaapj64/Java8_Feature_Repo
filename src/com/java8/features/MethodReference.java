@@ -4,24 +4,7 @@ import java.util.function.BiFunction;
 
 public class MethodReference {
 
-	// static methods 
-	public static void saySomethingStatic() {
-		System.out.println("Hello this is static method reference");
-	}
 	
-    public static void ThreadStatusStatic(){  
-        System.out.println("Hello this is static Thread is running...");  
-    }  
-    
-    public void saySomethingNonStatic() {
-		System.out.println("Hello this is non-static method reference");
-	}
-    
-    
-    public void ThreadStatusNonStatic(){  
-        System.out.println("Hello this non-static method Thread is running...");  
-    }  
-    
 	public static void main(String args[]) {
 		/*
 		 * Java provides a new feature called method reference in Java 8. Method
@@ -32,14 +15,14 @@ public class MethodReference {
 		 */		
 		//Example 1
 //		1) Static Reference
-		SayableMethodRef sayableMethodRef=MethodReference::saySomethingStatic;
+		SayableMethodRef sayableMethodRef=SayableMethodRefImpl::saySomethingStatic;
 		sayableMethodRef.say();
 		
 		/*
 		 *Example 2 we are using predefined functional interface Runnable to refer
 		 * static method.
 		 */
-		Thread t1=new Thread(MethodReference::ThreadStatusStatic);
+		Thread t1=new Thread(SayableMethodRefImpl::ThreadStatusStatic);
 		t1.start();
 		
 
@@ -63,13 +46,13 @@ public class MethodReference {
 		
 //		2) Non Static Reference
 		// Creating object  Referring non-static method using reference 
-		MethodReference methodReference=new MethodReference();
+		SayableMethodRefImpl methodReference=new SayableMethodRefImpl();
 		SayableMethodRef sayableMethodRefNonStatic=methodReference::saySomethingNonStatic;
 		
 		sayableMethodRefNonStatic.say();
 		
 		// Referring non-static method using anonymous object  
-		SayableMethodRef sayableMethodRefNonStatic2=new MethodReference()::saySomethingNonStatic;
+		SayableMethodRef sayableMethodRefNonStatic2=new SayableMethodRefImpl()::saySomethingNonStatic;
 		
 		sayableMethodRefNonStatic2.say();
 		
