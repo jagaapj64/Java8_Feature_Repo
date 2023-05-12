@@ -1,7 +1,0 @@
-durga
-softwaresolution
-abc-10
-d100
-true
-c
-Jaga
